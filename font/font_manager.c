@@ -27,6 +27,17 @@ PFontOpr GetFontOpr(char *pucFontName)
     return NULL; 
 }
 
+void ShowFontOpr()
+{
+    int i = 0;
+    PFontOpr ptTmp = g_ptFontOprs;
+    while(ptTmp)
+    {
+        printf("%02d %s" , i++, ptTmp->name);
+        ptTmp = ptTmp->ptNext;
+    }
+}
+
 void FontSystemRegister()
 {
     extern void FreetypeFontRegister();

@@ -23,6 +23,13 @@ typedef struct PageDesc {
 } PageDesc, *PPageDesc;
 
 
-
-
+int OpenTextFile(char *pucFileName);
+int SetFontDetail(char* pucHZKFile, char *pucFreetypeFile, unsigned int dwFontSize);
+int SelectAndInitDisplay(char *pucDispName);
+int RelocateFontPos(PFontBitMap ptFontBitMap);
+int ShowOneFont(PFontBitMap ptFontBitMap);
+int ShowOnePage(unsigned char* pucTextFileMemCurPos);
+int ShowNextPage(void);
+int ShowPrePage(void)
+void RecordPage(PPageDesc ptPageNew);
 #endif

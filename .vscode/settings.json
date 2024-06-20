@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "config.h": "c",
+        "font_manager.h": "c",
+        "disp_manager.h": "c",
+        "draw.h": "c"
+    }
+}
