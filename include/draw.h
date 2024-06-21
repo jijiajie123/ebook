@@ -30,6 +30,6 @@ int RelocateFontPos(PFontBitMap ptFontBitMap);
 int ShowOneFont(PFontBitMap ptFontBitMap);
 int ShowOnePage(unsigned char* pucTextFileMemCurPos);
 int ShowNextPage(void);
-int ShowPrePage(void)
+int ShowPrePage(void);
 void RecordPage(PPageDesc ptPageNew);
 #endif
