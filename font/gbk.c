@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "../include/config.h"
 
 static unsigned char* g_pucHZKMen;
 int GBKFontInit(char* aFilename, unsigned int iFontSize)
@@ -25,7 +26,7 @@ int GBKFontInit(char* aFilename, unsigned int iFontSize)
     g_pucHZKMen = mmap(NULL, hzk16_stat.st_size, PROT_READ, MAP_SHARED, fd_hzk16, 0);
     if (g_pucHZKMen == (void *)-1)
     {
-        DBG_PRINTF("can't mmap!\n")
+        DBG_PRINTF("can't mmap!\n");
     }
     return 0;
 }
@@ -54,6 +55,8 @@ int GBKGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap)
     ptFontBitMap->iNextOriginX = iPenX + 16;
     ptFontBitMap->iNextOriginY = iPenY;
     ptFontBitMap->pucBuffer = g_pucHZKMen + (iArea * 94 + iWhere) * 32  ;
+
+    return 0;
 }
 
 FontOpr g_tGBKOpr = {

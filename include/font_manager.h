@@ -2,6 +2,8 @@
 #define _FONT_MANAGER_H
 
 #define FONTDATAMAX 4096
+
+
 /* 每个字体的位图
  * 设计该结构体 需要支持多种字体文件 
  * 为了兼容ascii gbk freetype三种点阵字符的方法 
@@ -30,5 +32,6 @@ typedef struct FontOpr {
 
 void RegisterFont(PFontOpr ptFontOpr);
 PFontOpr GetFontOpr(char *pucFontName);
-void FontSystemRegister();
+void ShowFontOpr();
+int FontSystemRegister();
 #endif // !_FONT_MANAGER_H

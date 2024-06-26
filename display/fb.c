@@ -4,15 +4,15 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <linux/fb.h>
+#include <sys/ioctl.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <wchar.h>
 
-
-#include "../include/disp_manager.h"
 #include "../include/config.h"
+#include "../include/disp_manager.h"
 
 struct fb_var_screeninfo g_tVar;	/* Current var */
 struct fb_fix_screeninfo g_tFix;	/* Current fix */
@@ -23,24 +23,25 @@ static int g_iScreensize;
 static unsigned char* g_pucFbMem;
 static int g_FBFd;
 DispOpr g_tFBDispOpr;
+
 static int FBDeviceInit()
 {
     g_FBFd = open("/dev/fb0", O_RDWR);
 	if (g_FBFd < 0)
 	{
-		DBG_PRTINTF("can't open /dev/fb0\n");
+		DBG_PRINTF("can't open /dev/fb0\n");
 		return -1;
 	}
 
 	if (ioctl(g_FBFd, FBIOGET_VSCREENINFO, &g_tVar))
 	{
-		DBG_PRTINTF("can't get var\n");
+		DBG_PRINTF("can't get var\n");
 		return -1;
 	}
 
 	if (ioctl(g_FBFd, FBIOGET_FSCREENINFO, &g_tFix))
 	{
-		DBG_PRTINTF("can't get fix\n");
+		DBG_PRINTF("can't get fix\n");
 		return -1;
 	}
 
@@ -50,14 +51,14 @@ static int FBDeviceInit()
 	g_pucFbMem = (unsigned char *)mmap(NULL , g_iScreensize, PROT_READ | PROT_WRITE, MAP_SHARED, g_FBFd, 0);
     if(g_pucFbMem == (void*)0)
     {
-        DBG_PRTINTF("can't get fix\n");
+        DBG_PRINTF("can't get fix\n");
 		return -1;
 	}
     g_tFBDispOpr.iBpp =  g_iPixel_width;
     g_tFBDispOpr.iXres = g_tVar.xres;
     g_tFBDispOpr.iYres = g_tVar.yres;
 
-
+	return 0;
 }
 
 
@@ -96,15 +97,16 @@ static int FBShowPixel(int iPenX, int iPenY, unsigned int dwColor)
 		}
 		default:
 		{
-			printf("can't surport %dbpp\n", g_tVar.bits_per_pixel);
+			printf("can't support %dbpp\n", g_tVar.bits_per_pixel);
 			break;
 		}
 	}
+	return 0;
 }
 
 static int FBCleanScreen(unsigned int dwBackColor)
 {
-	unsigned char *pucPen8 = g_pucFbMem + iPenY*g_iLine_width + iPenX*g_iPixel_width;
+	unsigned char *pucPen8 = g_pucFbMem;
 	unsigned short *pucPen16;	
 	unsigned int *pucPen32;	
 
@@ -150,7 +152,7 @@ static int FBCleanScreen(unsigned int dwBackColor)
 		}
 		default:
 		{
-			printf("can't surport %dbpp\n", g_tVar.bits_per_pixel);
+			printf("can't support %dbpp\n", g_tVar.bits_per_pixel);
             return -1;
     		break;
 		}

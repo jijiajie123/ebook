@@ -8,10 +8,10 @@
 #include <config.h>
 #include <draw.h>
 #include <encoding_manager.h>
-#include <fonts_manager.h>
+#include <font_manager.h>
 #include <disp_manager.h>
 #include "../include/encoding_manager.h"
-#include "../include/fonts_manager.h"
+#include "../include/font_manager.h"
 #include "../include/disp_manager.h"
 #include "../include/draw.h"
 #include "../include/config.h"
@@ -205,7 +205,7 @@ int RelocateFontPos(PFontBitMap ptFontBitMap)
 
         }
     }
-
+    return 0;
 }
 /* 绘制一个字符 */
 int ShowOneFont(PFontBitMap ptFontBitMap)
@@ -214,7 +214,7 @@ int ShowOneFont(PFontBitMap ptFontBitMap)
     int y;
     unsigned char ucByte;
     int bit = 1;
-    int i;
+    int i = 0;
     /* 单色位图 位图中一个bit表示lcd一个像素 */
     if(ptFontBitMap->iBpp == 1)
     {

@@ -1,4 +1,5 @@
 #include "../include/disp_manager.h"
+#include <stdio.h>
 #include <string.h>
 
 PDispOpr g_ptDispOprDevs = NULL;
@@ -24,6 +25,8 @@ PDispOpr GetDisOpr(char *name)
     }
     return NULL;
 }
+
+
 void ShowDispOpr(void)
 {
     int i = 0;
@@ -34,8 +37,11 @@ void ShowDispOpr(void)
 		ptTmp = ptTmp->ptNext;
 	}
 }
-void DisplaySystemRegister()
+
+
+int DisplaySystemRegister()
 { 
     extern void FBDeviceRegister(void);
     FBDeviceRegister();
+    return 0;
 }

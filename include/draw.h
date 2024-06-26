@@ -1,7 +1,7 @@
 #ifndef _DRAW_H
 #define _DRAW_H
 
-
+#include "font_manager.h"
 
 /* 主要用于记录一页读取文件的开始地址和结束地址 
 *  通过ShowOnePage函数读取该结构体 知道该从哪里读取文本文件内容

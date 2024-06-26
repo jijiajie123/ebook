@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/font_manager.h"
+#include "../include/config.h"
 /* ASCII字体支持0~255*/
 
 static const unsigned char fontdata_8x16[FONTDATAMAX] = {

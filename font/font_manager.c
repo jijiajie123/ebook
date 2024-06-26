@@ -1,6 +1,7 @@
 #include "../include/font_manager.h"
 #include "../include/disp_manager.h"
 #include <string.h>
+#include <stdio.h>
 
 static PFontOpr g_ptFontOprs = NULL;
 
@@ -38,7 +39,7 @@ void ShowFontOpr()
     }
 }
 
-void FontSystemRegister()
+int FontSystemRegister()
 {
     extern void FreetypeFontRegister();
     FreetypeFontRegister();
@@ -46,5 +47,6 @@ void FontSystemRegister()
     GBKFontRegister();    
     extern void AsciiFontRegister();
     FreetypeFontRegister();    
+    return 0;
     
 }

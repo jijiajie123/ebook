@@ -1,10 +1,9 @@
 #ifndef _DISP_MANAGER_H
 #define _DISP_MANAGER_H
 
-#include <stdio.h>
+// #include <stdio.h>
 
-#define DBG_PRINTF printf
-#define DBG_PRINTF(...)
+// #include "config.h"
 
 
 typedef struct DispOpr {
@@ -22,6 +21,6 @@ typedef struct DispOpr {
 void RegisterDisplay(PDispOpr ptDispOpr);
 PDispOpr GetDisOpr(char *name);
 void ShowDispOpr(void);
-void DisplaySystemRegister();
+int DisplaySystemRegister();
 
 #endif // !_DISP_MANAGER_H

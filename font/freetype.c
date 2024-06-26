@@ -2,7 +2,7 @@
 #include "../include/font_manager.h"
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
-
+#include "../include/config.h"
 
 int FreetypeInit(char* aFilename, unsigned int iFontSize);
 int FreetypeGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap);
@@ -57,8 +57,8 @@ int FreetypeGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap)
     iPenX = ptFontBitMap->iCurOriginX;
     iPenY = ptFontBitMap->iCurOriginY;
 
-    FT_Set_Transform(g_Face, 0, &g_tPen);
-    error = FT_Load_Char(g_Face, dwCode, FT_LOAD_RENDER | FT_LOAD_MONOCHROME);
+    FT_Set_Transform(g_tFace, 0, &g_tPen);
+    error = FT_Load_Char(g_tFace, dwCode, FT_LOAD_RENDER | FT_LOAD_MONOCHROME);
 	if (error)
 	{ 
 			printf("FT_Load_Char error\n");
@@ -70,7 +70,7 @@ int FreetypeGetFontBitMap(unsigned int dwCode, PFontBitMap ptFontBitMap)
     ptFontBitMap->iYTop         = iPenY - g_tSlot->bitmap_top;
     ptFontBitMap->iXMax         = ptFontBitMap->iXLeft + g_tSlot->bitmap.width;  /* 并不是 iPenX + g_tSlot->bitmap_left  位图原点和屏幕左上角左对齐不一定在一条直线上 */
     ptFontBitMap->iYMax         = ptFontBitMap->iYTop + g_tSlot->bitmap.rows;   
-    ptFontBitMap->iPitch        = g_tSlot->bitmap->pitch;  
+    ptFontBitMap->iPitch        = g_tSlot->bitmap.pitch;  
     ptFontBitMap->iNextOriginX  = ptFontBitMap->iCurOriginX + g_tSlot->advance.x / 64;
     ptFontBitMap->iNextOriginY  = ptFontBitMap->iCurOriginY + g_tSlot->advance.y / 64;
     ptFontBitMap->iBpp          = 1;  /* 每个像素多少字节 */

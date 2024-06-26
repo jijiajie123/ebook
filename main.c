@@ -19,8 +19,7 @@
  int main(int argc, char *argv[])
  {
     int iError;
-    unsigned int dwFontSize;
-    unsigned int bList;
+    unsigned int dwFontSize = 16;
 	char acFreetypeFile[128];
     char acHzkFile[128];
     char acDispFile[128];
@@ -112,7 +111,7 @@
         return 0;
     }
 
-    strcnpy(acTextFile, argv[optind], 128);
+    strncpy(acTextFile, argv[optind], 128);
     acTextFile[127] = '\0';
 
     iError = OpenTextFile(acTextFile);
@@ -139,7 +138,7 @@
     }
 
     DBG_PRINTF("%s %S %d\n", __FILE__, __FUNCTION__, __LINE__);
-    iError = ShowNextage();
+    iError = ShowNextPage();
     DBG_PRINTF("%s %S %d\n", __FILE__, __FUNCTION__, __LINE__);
     if (iError)
     {
@@ -152,7 +151,7 @@
         printf("Enter 'n' to show next page, 'u' to show previous page, 'g' to exit\n");
         do
         {
-            cOPpr = getchar();
+            cOpr = getchar();
         } while (cOpr != 'n' && cOpr != 'u' && cOpr != 'g');
         if (cOpr == 'n')
         {

@@ -1,0 +1,8 @@
+
+EXTRA_CFLAGS  := 
+CFLAGS_file.o := 
+
+obj-y += gbk.o 
+obj-y += freetype.o 
+obj-y += ascii.o 
+obj-y += font_manager.o 

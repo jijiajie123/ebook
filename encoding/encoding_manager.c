@@ -21,7 +21,9 @@ int ShowEncodingOpr(void)
     {
         printf("EncodingOpr: %02d %s\n", i++, ptTmp->name);
         ptTmp = ptTmp->ptNext;
+        
     }
+    
     return 0;
 }
 
@@ -107,7 +109,7 @@ int DelFontOprFrmEncoding(PEncodingOpr ptEncodingOpr, PFontOpr ptFontOpr)
     return -1;
 
 }
-void EncodingSystemRegister()
+int EncodingSystemRegister()
 {
     extern void RegisterEncodingOpr_UTF8(void);   
     extern void RegisterEncodingOpr_UTF16be(void);
@@ -118,4 +120,5 @@ void EncodingSystemRegister()
     RegisterEncodingOpr_UTF8();
     RegisterEncodingOpr_UTF16le();
     RegisterEncodingOpr_UTF16be();
+    return 0;
 }

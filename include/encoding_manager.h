@@ -18,6 +18,6 @@ int ShowEncodingOpr(void);
 PEncodingOpr SelectEncodingOpr(unsigned char *pucHeadBuf);
 int AddFontOprForEncoding(PEncodingOpr ptEncodingOpr, PFontOpr ptFontOpr);
 int DelFontOprFrmEncoding(PEncodingOpr ptEncodingOpr, PFontOpr ptFontOpr);
-void EncodingSystemRegister();
+int EncodingSystemRegister();
 
 #endif
